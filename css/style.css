@@ -1,0 +1,14 @@
+.drop{
+    width: 30px;
+    height: 30px;
+}
+
+.ims{
+    height: 300px;
+}
+
+.ims:hover{
+    transition: 1.2s;
+    z-index: 100;
+    scale: 1.3;
+}
