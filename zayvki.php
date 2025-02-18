@@ -3,7 +3,7 @@
  include("temp/nav.php");
  include("temp/bd.php");
 
- $sql = "SELECT * FROM zayvki, category WHERE zayvki.id_category = category.id_category";
+ $sql = "SELECT * FROM zayvki, category WHERE zayvki.id_category = category.id_category order by datas desc";
  $result = mysqli_query($mysql, $sql);
 
  if(!empty($_GET["drop"])){

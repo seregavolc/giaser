@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 <?php
-                    $sql = "SELECT * FROM category";
+                    $sql = "SELECT * FROM category order by id_category desc";
                     $result = mysqli_query($mysql, $sql);
                     if(!empty($result)){
                         foreach($result as $row){

@@ -3,22 +3,22 @@
  include("temp/nav.php");
  include("temp/bd.php");
 
+ $sql = "SELECT * FROM zayvki, category WHERE zayvki.id_category = category.id_category and zayvki.status = 'Решена' order by id_zayavki desc limit 4";
+ $result = mysqli_query($mysql, $sql);
+
  $sql = "SELECT * FROM zayvki, category WHERE zayvki.id_category = category.id_category and zayvki.status = 'Решена'";
  $result = mysqli_query($mysql, $sql);
- $i = 0;
+ $i = 0;    
  if($result) {
     foreach($result as $row){
         $i++;
     }
 }
-
- $sql = "SELECT * FROM zayvki, category WHERE zayvki.id_category = category.id_category and zayvki.status = 'Решена' limit 4";
- $result = mysqli_query($mysql, $sql);
 ?>
 
 <div class="container mb-5">
-    <h3 class="text-center mt-3 mb-4">Количество решенных заявок: <?= $i?></h3>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+    <h3 class="text-center mt-3 mb-4 shet"><?= "Количество решенных заявок: $i"; ?></h3>
+    <div class="row row-cols-1 row-cols-md-2 g-4 gis">
         <?php
             if($result) {
                 foreach($result as $row){
@@ -50,5 +50,32 @@
         $(".ims").mouseout(function(){
             $(this).attr("src", $(this).parent(".card").children('.fotoposle').val());
         })
+
+        function go(){
+            $.ajax({
+                type: "post",
+                url: "go.php",
+                success: function (response) {
+                    if(response){
+                        $(".shet").html("Количество решенных заявок: " + response);
+                    }
+                }
+            });
+        }
+
+        function gos(){
+            $.ajax({
+                type: "post",
+                url: "gos.php",
+                success: function (response) {
+                    if(response){
+                        $(".gis").html(response);
+                    }
+                }
+            });
+        }
+
+        setInterval(go,5000);
+        setInterval(gos,5000);
     })
 </script>
